@@ -79,3 +79,9 @@ INSERT INTO bruger (name, password, email, loaktion) VALUES
 ('Linda Thomas', 'linda456', 'linda.thomas@example.com', '3-2-1 Shibuya, Tokyo 150-0002, Japan'),
 ('David Williams', 'davidpwd', 'david.williams@example.com', 'Avenida Paulista, 1000, São Paulo, SP 01310-100, Brazil'),
 ('Sarah Davis', 'sarahPass', 'sarah.davis@example.com', '78 Nelson Mandela Boulevard, Johannesburg, 2001, South Africa');
+
+INSERT INTO ´økonomi´ (product_name, date, old_profit_margins, old_pris) VALUES
+('Oral-B Pro 3000 Sensitive', '2025-03-01', 0.3, 339.95),
+('Oral-B Pro 3000 Sensitive', '2026-03-01', 0.4, 400),
+('Colgate Mundskyl Plax Cool Mint 500ml', "2025-05-23". 0.2, 45),
+('Colgate Mundskyl Plax Cool Mint 500ml', "2026-05-23". 0.2, 49.99),
