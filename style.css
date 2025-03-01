@@ -1,0 +1,132 @@
+nav {
+    background-color:#E1FBB2 ;
+    font-family: monospace;
+}
+body {
+    margin: 0px;
+}
+
+.topnav {
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 1px;
+}
+
+#logo {
+    height: 50px;
+}
+
+.vamu {
+    display:flex;
+    list-style: none;
+}
+
+.vamu li {
+    position: relative;
+    margin: 15px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.vamu li a {
+    top: 9px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.vamu li a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: #AFEE3D;
+    bottom: 0;
+    left: 50%;
+    transition: all 0.3s ease;
+}
+
+.vamu li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.vamu li a:hover {
+    color: #AFEE3D;
+}
+
+.vamu li .menu {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    display: none;
+    padding: 10px;
+    min-width: 150px;
+    z-index: 100;
+}
+
+.vamu li:hover .menu {
+    display: block;
+}
+
+.dropdown li {
+    margin-bottom: 10px;
+}
+
+.dropdown li:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown li a {
+    color: #333;
+    padding: 5px 10px;
+    display: block;
+    white-space: nowrap;
+}
+
+.dropdown li a:hover {
+    background-color: #f5f0e1;
+    color: #c9a300;
+}
+
+.vamu li a.active {
+    color:#c9a300
+}
+
+.vamu li a.active:after {
+    width: 100%;
+    left: 0px;
+    background-color: #c9a300;
+}
+
+h1 {
+    padding-left: 10px;
+    margin: 0px;
+    margin-top: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#wrapper {
+    width: 500px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.section {
+    width: 800px;
+    display:inline-block;
+    margin-right: 16px;
+    margin-bottom: 16px;
+}
+
+h2{
+    color: #49B0BA
+}

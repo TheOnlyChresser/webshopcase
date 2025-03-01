@@ -1,0 +1,443 @@
+ /*Tænke-højt test
+ 
+ Opgaver:
+ 1. Find formandens nummer
+ 2. Bestil en billet til Christian Andersen band
+ 3. Find lejebetingelserne når du lejer oscar.
+ 
+ 
+ 
+ 
+ Ændringer:
+ Tror booking fører til events booking
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ */
+nav {
+    background-color:#E1FBB2 ;
+    font-family: monospace;
+}
+body {
+    margin: 0px;
+}
+
+.topnav {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 1px;
+}
+
+#logo {
+    height: 50px;
+}
+
+.vamu {
+    display:flex;
+    list-style: none;
+}
+
+.vamu li {
+    position: relative;
+    margin: 15px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.vamu li a {
+    top: 9px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 16px;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.vamu li a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: #96DF11;
+    bottom: 0;
+    left: 50%;
+    transition: all 0.3s ease;
+}
+
+.vamu li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.vamu li a:hover {
+    color: #96DF11;
+}
+
+.vamu li .menu {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    background-color: #F1FEDA;
+    list-style: none;
+    display: none;
+    padding: 10px;
+    min-width: 150px;
+    z-index: 100;
+}
+
+.vamu li:hover .menu {
+    display: block;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu li:last-child {
+    margin-bottom: 0;
+}
+
+.menu li a {
+    color: #000000;
+    padding-left: 5px;
+    padding-right:5px ;
+    padding-top:10px;
+    padding-bottom: 10px;
+    display: block;
+}
+
+.menu li a:hover {
+    background-color: #F1FEDA;
+    color: #96DF11;
+}
+
+.vamu li a.active {
+    color:#96DF11
+}
+
+.vamu li a.active:after {
+    width: 100%;
+    left: 0px;
+    background-color: #96DF11;
+}
+
+h1 {
+    padding-left: 10px;
+    margin: 0px;
+    margin-top: 5px;
+    font-family: monospace;
+}
+
+#wrapper {
+    width: 500px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.aside {
+    position:absolute;
+    top: -5px;
+    right: -175px;
+    scale: 50%
+
+}
+
+.aside2 {
+    position:absolute;
+    top: -200px;
+    right: -345px;
+    scale: 30%
+
+}
+
+.aside3 {
+    position:absolute;
+    top: 200px;
+    right: 130px;
+    scale: 70%
+
+}
+
+.aside4 {
+    position:absolute;
+    top: -75px;
+    right: -350px;
+    scale: 40%
+
+}
+
+h2{
+    color: #49B0BA
+}
+
+
+#siteid {
+    height: 300px;
+    background-image: url(stemning2.jpg);
+    background-position: center;
+    background-size: cover;
+   
+}
+ /*Det meste af #kontaktsidsts kode er kopieret fra quora uden modificationer så jeg ved ikke 
+ hvordan den fungere har dog added noget kode så jeg kunne placere det det korrekte sted */
+#kontaktsidst{
+    border: 2px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 10%;
+    height: 220px;
+    background-color: #AFEE3D;
+    position:absolute;
+    left:45%;
+    bottom: -850px;
+}
+
+#kontaktsidst2{
+    border: 2px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 10%;
+    height: 220px;
+    background-color: #AFEE3D;
+    position:absolute;
+    left:45%;
+    bottom: -450px;
+}
+
+#kontaktsidst3{
+    border: 2px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 10%;
+    height: 220px;
+    background-color: #AFEE3D;
+    position:absolute;
+    left:45%;
+    bottom: -1300px;
+}
+
+#kontaktsidst4{
+    border: 2px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 10%;
+    height: 220px;
+    background-color: #AFEE3D;
+    position:absolute;
+    left:45%;
+    bottom: -920px;
+}
+
+#kontaktsidst5{
+    border: 2px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 10%;
+    height: 220px;
+    background-color: #AFEE3D;
+    position:absolute;
+    left:45%;
+    bottom: -2300px;
+}
+
+#kontaktsidst6{
+    border: 2px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 10%;
+    height: 220px;
+    background-color: #AFEE3D;
+    position:absolute;
+    left:45%;
+    bottom: -410px;
+}
+
+#kontaktsidst7{
+    border: 2px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 10%;
+    height: 220px;
+    background-color: #AFEE3D;
+    position:absolute;
+    left:45%;
+    bottom: -1300px;
+}
+
+#kontaktsidst8{
+    border: 2px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 10%;
+    height: 220px;
+    background-color: #AFEE3D;
+    position:absolute;
+    left:45%;
+    bottom: -700px;
+}
+
+#person {
+    width: 500px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 10px;
+    padding-top: 0px;
+    font-size: 18px;
+    color: #0D8792;
+    font-weight: bold;
+}
+
+#knap1 {
+    position: relative;
+    bottom: 675px;
+    left: 350px;
+    background-color:#AFEE3D;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #knap2 {
+    position: relative;
+    bottom: 2010px;
+    left: 350px;
+    background-color: #AFEE3D;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #knap3 {
+    position: relative;
+    bottom: 110px;
+    left: 350px;
+    background-color: #AFEE3D;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #knap4 {
+    position: relative;
+    bottom: 470px;
+    left: 350px;
+    background-color:#AFEE3D;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #knap6 {
+    position: relative;
+    bottom: 210px;
+    left: 350px;
+    background-color:#AFEE3D;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #knap1:hover {
+    position: relative;
+    bottom: 675px;
+    left: 350px;
+    background-color:#AFEE3D;
+    color: #000;
+    border:none;
+    border-radius:10px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #knap2:hover {
+    position: relative;
+    bottom: 2010px;
+    left: 350px;
+    background-color: #AFEE3D;
+    color: #000;
+    border:none;
+    border-radius:10px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #knap3:hover {
+    position: relative;
+    bottom: 110px;
+    left: 350px;
+    background-color: #AFEE3D;
+    color: #000;
+    border:none;
+    border-radius:10px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #knap4:hover {
+    position: relative;
+    bottom: 470px;
+    left: 350px;
+    background-color:#AFEE3D;
+    color: #000;
+    border:none;
+    border-radius:10px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #knap6:hover {
+    position: relative;
+    bottom: 210px;
+    left: 350px;
+    background-color:#AFEE3D;
+    color: #000;
+    border:none;
+    border-radius:10px;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
