@@ -1,4 +1,4 @@
-CREATE TABLE økonomi (
+CREATE TABLE ´økonomi´ (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     product_name TEXT,
     date DATE,
