@@ -17,13 +17,11 @@ CREATE TABLE bruger (
 CREATE TABLE ordrer (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     order_id INT,
-    date DATE,
     product_name TEXT
 );
 
 CREATE TABLE dato (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE
 );
 
@@ -31,13 +29,14 @@ CREATE TABLE produkter (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     navn TEXT,
     Pris FLOAT,
-    product_type TEXT
+    product_type TEXT,
+    billede TEXT
 );
 
-INSERT INTO produkter (navn, Pris, product_type) VALUES
-('Philips Diamondclean 9000', 1493, 'Tandbørste'),
+INSERT INTO produkter (navn, Pris, product_type, billede) VALUES
+('Philips Diamondclean 9000', 1493, 'Tandbørste', 'https://images.philips.com/is/image/philipsconsumer/d714d66d918c4464ae07afb600b2c346?$pnglarge$&wid=960'),
 ('Oral-B Pro 3000 Sensitive', 369, 'Tandbørste'),
-('Oral-B Vitality', 300, 'Tandbørste'),
+('Oral-B Vitality Pro', 300, 'Tandbørste'),
 ('Curaprox Hydrosonic Pro', 1372, 'Tandbørste'),
 ('Oral-B iO 10', 2900, 'Tandbørste'),
 ('FineSmile IQ', 599, 'Tandbørste'),
@@ -59,14 +58,14 @@ INSERT INTO ordrer (order_id, product_name) VALUES
 (6, 'Curaprox Hydrosonic Pro'),
 (6, 'Curaprox Hydrosonic Pro');
 
-INSERT INTO dato (order_id, date) VALUES
-(1, '2020-07-25'),
-(2, '2024-01-02'),
-(3, '2024-01-02'),
-(4, '2024-02-21'),
-(5, '2025-02-01'),
-(6, '2025-02-12'),
-(7, '2024-01-13');
+INSERT INTO dato (date) VALUES
+('2020-07-25'),
+('2024-01-02'),
+('2024-01-02'),
+('2024-02-21'),
+('2025-02-01'),
+('2025-02-12'),
+('2024-01-13');
 
 INSERT INTO bruger (name, password, email, loaktion) VALUES
 ('John Doe', 'password123', 'john.doe@example.com', '123 Maple Street, Springfield, IL 62701, USA'),
