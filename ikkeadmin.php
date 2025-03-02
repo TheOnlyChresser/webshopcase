@@ -1,64 +1,24 @@
 <?php
-// Opret (eller åbn) en lokal SQLite-database
-$db = new PDO('sqlite:webshop.db');
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// Databaseforbindelsesindstillinger til Azure SQL Database
+$serverName = "webshopcasedata.database.windows.net,1433";
+$database   = "webshopcasedata"; // Dit databasenavn
+$username   = "nikchre";
+$password   = "Admin_123";
 
-// Opret nødvendige tabeller
-$tables = [
-    "CREATE TABLE IF NOT EXISTS produkter (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        navn TEXT,
-        Pris FLOAT,
-        product_type TEXT,
-        billede TEXT
-    )",
-    "CREATE TABLE IF NOT EXISTS ordrer (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        order_id INT,
-        date DATE,
-        product_name TEXT
-    )",
-    "CREATE TABLE IF NOT EXISTS dato (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        order_id INT,
-        date DATE
-    )",
-    "CREATE TABLE IF NOT EXISTS bruger (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        password TEXT,
-        email TEXT,
-        loaktion TEXT
-    )",
-    "CREATE TABLE IF NOT EXISTS økonomi (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        product_name TEXT,
-        date DATE,
-        old_profit_margins FLOAT,
-        old_pris FLOAT
-    )"
+// DSN til SQL Server med PDO_SQLSRV
+$dsn = "sqlsrv:Server=$serverName;Database=$database";
+
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
 ];
 
-foreach ($tables as $table) {
-    $db->exec($table);
+try {
+    $pdo = new PDO($dsn, $username, $password, $options);
+    echo "Forbindelsen til databasen lykkedes!<br>";
+} catch (PDOException $e) {
+    die("Databaseforbindelsen mislykkedes: " . $e->getMessage());
 }
-
-// Indsæt testdata
-$insert = "INSERT INTO produkter (navn, Pris, product_type, billede) VALUES
-    ('Philips Diamondclean 9000', 1493, 'Tandbørste', 'https://images.philips.com/is/image/philipsconsumer/d714d66d918c4464ae07afb600b2c346?$pnglarge$&wid=960'),
-    ('Oral-B Pro 3000 Sensitive', 369, 'Tandbørste', 'https://shop15101.sfstatic.io/upload_dir/shop/_thumbs/Oral-B_80332158_INT_3.w610.h610.fill.wm.d88e511.jpg'),
-    ('Oral-B Vitality Pro', 300, 'Tandbørste', ''),
-    ('Curaprox Hydrosonic Pro', 1372, 'Tandbørste', ''),
-    ('Oral-B iO 10', 2900, 'Tandbørste', ''),
-    ('FineSmile IQ', 599, 'Tandbørste', ''),
-    ('Colgate Mundskyl Plax Cool Mint 500ml', 40, 'Mundskyl', ''),
-    ('Oral-B Glide 30 stk', 79, 'Tandtråd', ''),
-    ('Faaborg Pharma Relief+ Repair Creme 30ml', 55, 'Fluorcreme', ''),
-    ('Zendium Classic', 25, 'Tandpasta', ''),
-    ('V6 Tyggegummi Oral-B Spearmint', 15, 'Tyggegummi', '')";
-
-$db->exec($insert);
-
 ?>
 <!DOCTYPE html>
 <html lang="da">
@@ -75,8 +35,8 @@ $db->exec($insert);
             text-align: center;
         }
         .topbar {
-            background-color: #f8f8f8;
-            padding: 15px;
+            background-color: #FEFEFE;
+            padding: 0px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
@@ -100,7 +60,6 @@ $db->exec($insert);
             width: 200px;
             text-align: center;
             background-color: #fff;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
         .product img {
             width: 100%;
@@ -112,21 +71,28 @@ $db->exec($insert);
 </head>
 <body>
     <div class="topbar">
-        <h1>Webshop</h1>
+        <ul>
+            <li><a href="ikkeadmin.html" class="active">Forsiden</a></li>
+            <li><a href="populaere.php">De populære</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
     </div>
     
     <div class="container">
         <h2>Produkter</h2>
         <div class="products">
             <?php
-            // Hent produkter fra databasen
-            $stmt = $db->query("SELECT navn, Pris, billede FROM produkter");
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<div class='product'>";
-                echo "<img src='" . ($row["billede"] ?: "https://via.placeholder.com/200") . "' alt='" . $row["navn"] . "'>";
-                echo "<h3>" . $row["navn"] . "</h3>";
-                echo "<p>Pris: " . $row["Pris"] . " DKK</p>";
-                echo "</div>";
+            try {
+                $stmt = $pdo->query("SELECT navn, Pris, billede FROM produkter");
+                while ($row = $stmt->fetch()) {
+                    echo "<div class='product'>";
+                    echo "<img src='" . ($row["billede"] ?: "https://via.placeholder.com/200") . "' alt='" . $row["navn"] . "'>";
+                    echo "<h3>" . $row["navn"] . "</h3>";
+                    echo "<p>Pris: " . $row["Pris"] . " DKK</p>";
+                    echo "</div>";
+                }
+            } catch (PDOException $e) {
+                echo "<p>Fejl ved indlæsning af produkter: " . $e->getMessage() . "</p>";
             }
             ?>
         </div>

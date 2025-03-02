@@ -159,11 +159,12 @@
     .input-container{
       position: relative;
       margin: 0 auto;
-      width: 30%;
+      width: 15%;
       display: flex;
       align-items: center;
-      z-index: 10;
       top:25%;
+      border-radius: 25px;
+      border: 1px solid black;
     }
     .inputbokse{
       left:1.8%;
@@ -213,7 +214,11 @@
                 <a class ="logo" href="#">glemt password?</a>
             </div>
 
-            <button type="submit" class="try-button"><a href="ikkeadmin.php">login</a></button>
+            <div type="submit" class="button-container">
+              <a href="admin.php" class = "try-button">
+                <span>login</span>
+              </a>
+            </div>
 
             <div class="registrer-link">
                 <p>lav en account <a class = "logo" href="#">registrer</a></p>
