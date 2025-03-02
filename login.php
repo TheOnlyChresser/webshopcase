@@ -165,7 +165,9 @@
       top:25%;
       border-radius: 25px;
       border: 1px solid black;
+      box-shadow: 5px 10px #888888
     }
+    
     .inputbokse{
       left:1.8%;
       flex-direction: column;
