@@ -49,7 +49,7 @@ try {
         ('Philips Diamondclean 9000', 1493, 'Tandbørste', 'https://images.philips.com/is/image/philipsconsumer/d714d66d918c4464ae07afb600b2c346?$pnglarge$&wid=960'),
         ('Oral-B Pro 3000 Sensitive', 369, 'Tandbørste', 'https://shop15101.sfstatic.io/upload_dir/shop/_thumbs/Oral-B_80332158_INT_3.w610.h610.fill.wm.d88e511.jpg'),
         ('Oral-B Vitality Pro', 300, 'Tandbørste', 'https://images.matas.dk/trs/w1780//encode/4210201432326.jpg'),
-        ('Curaprox Hydrosonic Pro', 1372, 'Tandbørste', 'https://images.matas.dk/trs/w1780//Assets_v3/600001-700000/660001-661000/660101-660200/660155/product_v1_x2.jpg'),
+        ('Curaprox Hydrosonic Pro', 1372, 'Tandbørste', 'https://dgoavhl867cjd.cloudfront.net/0001/68a3bd1f/resize(w=1027;h=578):sharpen(level=0):output(format=jpeg)/up/dt/2025/02/DT_US_2025-02_DTI_Hydrosonic_Newsletter_Product_1925x1350.jpg'),
         ('Oral-B iO 10', 2900, 'Tandbørste', 'https://csdam.net/data/jpg/0/d42a6582/d42a6582-c5ba-4a07-aabb-2427559ab1a7.jpg'),
         ('FineSmile IQ', 599, 'Tandbørste', 'https://finesmile.dk/cdn/shop/products/Stanalone_Gray_2compressed_540x.png?v=1664187003'),
         ('Colgate Mundskyl Plax Cool Mint 500ml', 40, 'Mundskyl', 'https://images.matas.dk/trs/w1780//encode/726320_1_20240904124242.jpg'),
