@@ -45,11 +45,12 @@ try {
     }
 
     // Indsæt testdata
+    $db->exec("DELETE FROM produkter");
     $insert = "INSERT INTO produkter (navn, Pris, product_type, billede) VALUES
         ('Philips Diamondclean 9000', 1493, 'Tandbørste', 'https://images.philips.com/is/image/philipsconsumer/d714d66d918c4464ae07afb600b2c346?$pnglarge$&wid=960'),
         ('Oral-B Pro 3000 Sensitive', 369, 'Tandbørste', 'https://shop15101.sfstatic.io/upload_dir/shop/_thumbs/Oral-B_80332158_INT_3.w610.h610.fill.wm.d88e511.jpg'),
         ('Oral-B Vitality Pro', 300, 'Tandbørste', 'https://images.matas.dk/trs/w1780//encode/4210201432326.jpg'),
-        ('Curaprox Hydrosonic Pro', 1372, 'Tandbørste', 'https://images.matas.dk/trs/w1780//Assets_v3/600001-700000/660001-661000/660101-660200/660155/product_v1_x2.jpg'),
+        ('Curaprox Hydrosonic Pro', 1372, 'Tandbørste', 'https://dgoavhl867cjd.cloudfront.net/0001/68a3bd1f/resize(w=1027;h=578):sharpen(level=0):output(format=jpeg)/up/dt/2025/02/DT_US_2025-02_DTI_Hydrosonic_Newsletter_Product_1925x1350.jpg'),
         ('Oral-B iO 10', 2900, 'Tandbørste', 'https://csdam.net/data/jpg/0/d42a6582/d42a6582-c5ba-4a07-aabb-2427559ab1a7.jpg'),
         ('FineSmile IQ', 599, 'Tandbørste', 'https://finesmile.dk/cdn/shop/products/Stanalone_Gray_2compressed_540x.png?v=1664187003'),
         ('Colgate Mundskyl Plax Cool Mint 500ml', 40, 'Mundskyl', 'https://images.matas.dk/trs/w1780//encode/726320_1_20240904124242.jpg'),
@@ -71,6 +72,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webshop</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -92,22 +94,27 @@ try {
             margin-top: 80px;
         }
         .products {
-            display: flex;
-            flex-wrap: wrap;
+            display: inline-block;
+            white-space: nowrap;
+            overflow-x: auto;
+            width: 100vh;
             justify-content: center;
-        }
+}
+        
         .product {
             border: 1px solid #ddd;
+            display: inline-block;
             border-radius: 5px;
             margin: 15px;
             padding: 15px;
-            width: 200px;
             text-align: center;
             background-color: #fff;
+            font-family: 'Inter';
+            
         }
         .product img {
-            width: 100%;
-            height: auto;
+            width: 35vh;
+            height: 25vh;
             border-bottom: 1px solid #ddd;
             margin-bottom: 10px;
         }
@@ -213,6 +220,8 @@ try {
     <div class="container">
         <h2>Produkter</h2>
         <div class="products">
+
+
             <?php
             // Hent produkter fra databasen
             try {
