@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
 try {
     // Opret (eller åbn) en lokal SQLite-database
     $db = new PDO('sqlite:webshop.db');
@@ -85,13 +92,17 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
+            display: flex;
+            justify-content: center;
         }
         .topbar {
             background-color: #FEFEFE;
@@ -203,14 +214,40 @@ try {
             background-color: #4A8DD3;
         }
         .data{
-
+            text-align: center;
+            margin-left: 5vh;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10%;
+            background:rg;
+            padding: 20px;
+            width: 50vh;
+            height:16vh;
+            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.01) 0px 9px 9px 0px, rgba(0, 0, 0, 0.06) 0px 2px 5px 0px;
+        }
+        .data h2{
+            font-family: 'Inter';
+            font-weight: 300;
+            font-size: 1.75rem;
+            margin-top: -10px;
+            color: #666;
+        }
+        .data h3{
+            font-family: 'Inter';
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        .datas h3{
+            color:#FFF;
+            font-size: 0.00000000001rem;
         }
     </style>
 </head>
 <body>
     <div class="topbar">
         <ul class="vamu">
-            <li><a href="ikkeadmin.html">Forsiden</a></li>
+            <li><a href="ikkeadmin.php">Forsiden</a></li>
             <li>
                 <a>Produkter</a>
                 <ul class="menu">
@@ -229,26 +266,41 @@ try {
         </ul>
     </div>
     
-<div class="data">
-<?php
-            // Hent produkter fra databasen
-            try {
-                $stmt = $db->query("SELECT 
-    COUNT(DISTINCT ordrer.order_id) AS orderavg, 
-    ordrer.product_name, 
-    produkter.navn, 
-    produkter.Pris, 
-    SUM(produkter.Pris) AS totalprice,
-    SUM(produkter.Pris)/COUNT(DISTINCT ordrer.order_id) AS order_avg
-FROM ordrer
-INNER JOIN produkter ON produkter.navn = ordrer.product_name
-GROUP BY ordrer.product_name, produkter.navn, produkter.Pris
-");
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<h3>" . $row["order_avg"] . "</h3>";
-                }
-            } catch (PDOException $e) {
-                echo "Error fetching products: " . $e->getMessage();
-            }
+    <div class="datas">
+    <?php
+// Hent produkter fra databasen
+try {
+    $stmt = $db->query("SELECT ordrer.order_id, SUM(produkter.pris) AS orderTotal
+                        FROM ordrer
+                        JOIN produkter ON ordrer.product_name = produkter.navn
+                        GROUP BY ordrer.order_id");
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo "<h3>Order ID: " . $row['order_id'] . " - Total Price: " . $row['orderTotal'] . "</h3>";
+    }
+} catch (PDOException $e) {
+    echo "Error fetching products: " . $e->getMessage();
+}
 ?>
 </div>
+
+<div class="data">
+<h2>Gennemsnitlig ordrer pris</h2>
+<?php
+// Calculate the average of the average prices of all orders
+try {
+    $stmt = $db->query("SELECT AVG(orderTotal) AS totalAvg
+                        FROM (SELECT SUM(produkter.pris) AS orderTotal
+                              FROM ordrer
+                              JOIN produkter ON ordrer.product_name = produkter.navn
+                              GROUP BY ordrer.order_id)");
+
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    echo "<h3>" . $row['totalAvg'] . " Kr</h3>";
+} catch (PDOException $e) {
+    echo "Error fetching total average price: " . $e->getMessage();
+}
+?>
+</div>
+</body>
+</html>
