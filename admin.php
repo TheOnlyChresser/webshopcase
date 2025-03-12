@@ -192,7 +192,7 @@ try {
 <body>
     <div class="topbar">
         <ul class="vamu">
-            <li><a href="ikkeadmin.html" class="active">Forsiden</a></li>
+            <li><a href="admin.php" class="active">Forsiden</a></li>
             <li>
                 <a>Produkter</a>
                 <ul class="menu">

@@ -45,7 +45,6 @@ try {
     }
 
     // Indsæt testdata
-    $db->exec("DELETE FROM produkter");
     $insert = "INSERT INTO produkter (navn, Pris, product_type, billede) VALUES
         ('Philips Diamondclean 9000', 1493, 'Tandbørste', 'https://images.philips.com/is/image/philipsconsumer/d714d66d918c4464ae07afb600b2c346?$pnglarge$&wid=960'),
         ('Oral-B Pro 3000 Sensitive', 369, 'Tandbørste', 'https://shop15101.sfstatic.io/upload_dir/shop/_thumbs/Oral-B_80332158_INT_3.w610.h610.fill.wm.d88e511.jpg'),
@@ -72,7 +71,6 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webshop</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -97,21 +95,19 @@ try {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-}
-        
+        }
         .product {
             border: 1px solid #ddd;
             border-radius: 5px;
             margin: 15px;
             padding: 15px;
+            width: 200px;
             text-align: center;
             background-color: #fff;
-            font-family: 'Inter';
-            
         }
         .product img {
-            width: 35vh;
-            height: 30vh;
+            width: 100%;
+            height: auto;
             border-bottom: 1px solid #ddd;
             margin-bottom: 10px;
         }
@@ -196,7 +192,7 @@ try {
 <body>
     <div class="topbar">
         <ul class="vamu">
-            <li><a href="ikkeadmin.php" class="active">Forsiden</a></li>
+            <li><a href="ikkeadmin.php">Forsiden</a></li>
             <li>
                 <a>Produkter</a>
                 <ul class="menu">
@@ -208,21 +204,30 @@ try {
                 </ul>
             </li>
             <li>
-                <a href="populaere.php">De populære</a>
+                <a href="populaere.php" class="active">De populære</a>
             </li>
             <li><a href="kontakt.php">Kontakt</a></li>
+            <li><a href="adminpanel.php">Admin</a></li>
         </ul>
     </div>
     
     <div class="container">
         <h2>Produkter</h2>
         <div class="products">
-
-
             <?php
-            // Hent produkter fra databasen
+            // Hent mest købte produkter fra databasen
             try {
-                $stmt = $db->query("SELECT navn, Pris, billede FROM produkter");
+                $stmt = $db->query("
+                    SELECT p.navn, p.Pris, p.billede, p.product_type
+                    FROM produkter p
+                    JOIN (
+                        SELECT product_name, COUNT(*) as count
+                        FROM ordrer
+                        GROUP BY product_name
+                    ) o ON p.navn = o.product_name
+                    GROUP BY p.product_type
+                    ORDER BY o.count DESC
+                ");
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<div class='product'>";
                     echo "<img src='" . ($row["billede"] ?: "https://design5.dk/wp-content/uploads/123.jpg") . "' alt='" . $row["navn"] . "'>";
@@ -235,9 +240,6 @@ try {
             }
             ?>
         </div>
-        <div class="data">
-
-</div>
     </div>
 </body>
 </html>

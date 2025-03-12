@@ -261,10 +261,7 @@ html, body {
                 <input type="password" name="password" placeholder="password" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
-            <div class="huske">
-                <label><input type="checkbox">husk mig</label>
-                <a class ="logo" href="#">glemt password?</a>
-            </div>
+            
 
             <div class="button-container">
               <button type="submit" class="try-button">

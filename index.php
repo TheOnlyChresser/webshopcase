@@ -234,7 +234,7 @@
   <!-- Fast topbar -->
   <div class="topbar">
     <div class="logo"></div>
-    <span class="brand">Careerpilot</span>
+    <span class="brand">Webshop</span>
     </div>
   </div>
 
